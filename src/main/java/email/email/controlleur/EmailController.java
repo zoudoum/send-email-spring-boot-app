@@ -1,9 +1,14 @@
 package email.email.controlleur;
 
+import email.email.entite.Email;
 import email.email.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 public class EmailController {
@@ -14,17 +19,20 @@ public class EmailController {
     public EmailController(EmailService emailService) {
         this.emailService = emailService;
     }
+    @ResponseStatus(value = HttpStatus.CREATED)
+    @PostMapping("/envoyer-email")
+    public ResponseEntity<String>  envoyerEmail(@RequestBody Email email) {
+        try {
 
-    @GetMapping("/envoyer-email")
-    public String envoyerEmail() {
-        String destinataire = "destinataire@example.com";
-        String sujet = "Sujet de l'e-mail";
-        String contenu = "Contenu de l'e-mail";
+            email.setDestinataire("doumzoro@gmail.com");
+            emailService.sendEmail(email.getDestinataire(), email.getSujet(), "Message de :" + email.getEnvoi() +" " +email.getContenu());
 
-        // Appeler le service pour envoyer l'e-mail
-        emailService.sendEmail(destinataire, sujet, contenu);
+            return ResponseEntity.status(HttpStatus.CREATED).body("L'e-mail a été envoyé avec succès");
+        } catch (Exception e) {
 
-        // Rediriger ou retourner une vue en fonction de vos besoins
-        return "redirect:/accueil";
+            e.printStackTrace();
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Une erreur s'est produite lors de l'envoi de l'e-mail");
+        }
     }
-}
+    }
