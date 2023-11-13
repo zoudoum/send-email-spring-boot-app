@@ -1,15 +1,17 @@
 package email.email.controlleur;
 
+
 import email.email.entite.Email;
 import email.email.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
+@CrossOrigin(origins = "https://655225f865693005a76f6070--creative-paprenjak-ad6e34.netlify.app/")
 @Controller
 public class EmailController {
 
