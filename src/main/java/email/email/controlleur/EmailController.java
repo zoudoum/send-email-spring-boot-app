@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-@CrossOrigin(origins = "https://655225f865693005a76f6070--creative-paprenjak-ad6e34.netlify.app/")
+@CrossOrigin(origins = "https://655235a74b488908a3c3cb91--gleaming-llama-aba032.netlify.app/")
 @Controller
 public class EmailController {
 
